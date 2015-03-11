@@ -1,0 +1,10 @@
+base
+dplyr
+reshape2
+ggplot2
+psych
+xtable
+pander
+corrplot
+rpart
+rpart.plot

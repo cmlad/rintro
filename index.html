@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Въведение в R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Въведение в R">
+  <meta name="author" content="Кристиан Младенов">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Въведение в R</h1>
+    <h2></h2>
+    <p>Кристиан Младенов<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>За мен</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Съосновател на Intuitics/StatAce</li>
+<li>От 2.5 години разработваме софтуер на базата на R</li>
+<li>Бизнес образование</li>
+<li>Опит с анализ на данни в Agilent Technologies, HP, и университета</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Какво е R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R е език за статистическо програмиране = програмен език с изчислителна и графична насока</li>
+<li>Диалект на комерсиалните езици S и S-Plus (сега собственост на Tibco)</li>
+<li>Започнат през 1993 от Robert Gentleman и Ross Ihaka в университета в Оукланд, Нова Зенландия</li>
+<li>Ползва се от над 2 милиона потребителя</li>
+<li>Растежа се забърва последните няколко години, преминавайки от академичните среди към бизнеса</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Предимства</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Пълен набор от фукнции за целия процес на анализа, от свързването към данни до комуникирането на резултати</li>
+<li>Повече от 6000 допълнителни пакета. R често получава най-новите анализи първи.</li>
+<li>Много добри графични способности</li>
+<li>Безплатен, с отворен код</li>
+<li>Няколко комерсиални предложения</li>
+<li>Изключително активна общност</li>
+<li>Напълно функционален програмен език</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Популярност</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="popularity.png" style="width: 100%" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Растеж на броя на R пакетите</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="cran.png" style="height: 520px" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Недостатъци</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Сравнително труден за научаване</li>
+<li>Сравнително слаби графични интерфейси</li>
+<li>Документацията не е винаги ясна или пълна</li>
+<li>Не всички пакети са с добро качество</li>
+<li>Много начини за постигане на една и съща цел</li>
+<li>В много случай ограничен от достъпната памет (RAM)</li>
+<li>Липса на вградена паралелизация</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Сравнение с конкуренцията</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th></th>
+<th>R</th>
+<th>SAS</th>
+<th>SPSS</th>
+<th>Matlab</th>
+<th>Python</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Цена</td>
+<td>Безплатен</td>
+<td>Много скъп</td>
+<td>Скъп</td>
+<td>Скъп</td>
+<td>Безплатен</td>
+</tr>
+<tr>
+<td>Нови функции</td>
+<td>Бързо</td>
+<td>Бавно</td>
+<td>Бавно</td>
+<td>Бавно</td>
+<td>Средно</td>
+</tr>
+<tr>
+<td>Насока</td>
+<td>Широка</td>
+<td>Широка</td>
+<td>Социални науки</td>
+<td>Инженерни науки + ML</td>
+<td>Широка</td>
+</tr>
+<tr>
+<td>Леснота на учене</td>
+<td>Труден</td>
+<td>Среден</td>
+<td>Лесен</td>
+<td>Лесен</td>
+<td>Среден</td>
+</tr>
+<tr>
+<td>Графични способности</td>
+<td>Много добри</td>
+<td>Средни</td>
+<td>Средни</td>
+<td>Добри</td>
+<td>Средни</td>
+</tr>
+<tr>
+<td>Работа с данни</td>
+<td>Добра</td>
+<td>Много добра</td>
+<td>Слаба</td>
+<td>Добра</td>
+<td>Много добра</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Развитие</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Бърз разтеж, ползва се от фирми като Google, Facebook, Twitter, Amazon, Netflix, Microsoft, Expedia, Dell, HP, и много други</li>
+<li>По-достъпни пакети с богат набор от функции (dplyr, reshape2, caret, и т.н.)</li>
+<li>Често се ползва за прототипиране, след което анализа се пренаписва с Java, Python и т.н.</li>
+<li>Допълва се с Python за събиране и обработка на данни, както и за анализ на текст</li>
+<li>Сериозни усилия за премахване на ограниченията с паметта и процесора</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Въведение в езика</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>R се ползва през интерактивна конзола (често RStudio)</li>
+<li>Ползва къдрави скоби като C, Java и JavaScript</li>
+<li>Като цяло е функционален програмен език = съставен от функции които приемат обекти. Обектите рядко имат функции.</li>
+<li><p>Пример:</p>
+
+<!-- collapse=TRUE -->
+
+<pre><code class="r">&quot;Hello world&quot;
+# [1] &quot;Hello world&quot;
+1234
+# [1] 1234
+1 + 2
+# [1] 3
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Видове обекти</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Има няколко основни вида обекти в R. Всеки обект има клас (<code>class()</code>)</li>
+<li>Нулева стойност (<code>NULL</code>)</li>
+<li>Вектор - редица от примитивни структури (липсващи стойности = <code>NA</code>):
+
+<ul>
+<li>Двоични, TRUE/FALSE или T/F (<code>logical</code>)</li>
+<li>Числа: дробни (<code>numeric</code>), цели (<code>integer</code>), комплексни (<code>complex</code>)</li>
+<li>Текст (<code>character</code>) и фактор/категория (<code>factor</code>, <code>ordered.factor</code>)</li>
+<li>Дата до ден (<code>Date</code>) и до секунда (<code>POSIXt</code>)</li>
+</ul></li>
+<li>Матрица (<code>matrix</code>): 2-измерен вектор</li>
+<li>Масив (<code>array</code>): вектор в 2 или повече измерения</li>
+<li>Списък (<code>list</code>): съдържа произволни други обекти (всеки има индекс + евентуално име)</li>
+<li>Таблица (<code>data.frame</code>): списък който съдържа само вектори с еднаква дължина</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Задаване на стойност на променливи</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Оператора за задание е <code>&lt;-</code> (може да се ползва и <code>=</code> но не е препоръчано)</li>
+<li><p>Изпълнението само на име на променлива връща нейната стойност</p>
+
+<pre><code class="r">hello &lt;- &quot;Здравей&quot;
+hello
+# [1] &quot;Здравей&quot;
+</code></pre></li>
+<li><p><code>hello</code> е текстов вектор с дължина 1:</p>
+
+<pre><code class="r">class(hello)
+# [1] &quot;character&quot;
+length(hello)
+# [1] 1
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Помощ за функция</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>? ф</code> и <code>help(ф)</code> показват документацията на функция, <code>example(ф)</code> показва примери:</p>
+
+<pre><code>? rnorm или help(rnorm)
+</code></pre>
+
+<p><img src="help.png" style="width: 100%; border: 1px solid black" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Търсене в документацията</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Tърсете в документацията с <code>?? термин</code>:</p>
+
+<pre><code>?? random
+</code></pre>
+
+<p><img src="help.search.png" style="width: 100%; border: 1px solid black" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Задаване на стойност на функции</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>В R може да се зададе стойност на функция</li>
+<li><p>Пример: елементите във вектор могат да имат имена (текстов вектор):</p>
+
+<pre><code class="r">names(hello)
+# NULL
+</code></pre></li>
+<li><p>Задаване на имена:</p>
+
+<pre><code class="r">names(hello) &lt;- &quot;Това е R&quot;
+hello
+#  Това е R 
+# &quot;Здравей&quot;
+names(hello)
+# [1] &quot;Това е R&quot;
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Работа с обекти</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Имената на обекти могат да съдържат букви, цифри, <code>.</code> и <code>_</code>. Конвенция: data.frame, as.list</li>
+<li>Отделните елементи на всеки обект се достигат с квадратни скоби (<code>[...]</code>). Индексите винаги започват от 1.</li>
+<li><p>Функция <code>c()</code> създава/комбинира вектор с повече от един елемент:</p>
+
+<pre><code class="r">hello.vector &lt;- c(hello, &quot;Нова стойност&quot;)
+hello.vector
+#        Това е R                 
+#       &quot;Здравей&quot; &quot;Нова стойност&quot;
+names(hello.vector)[2] &lt;- &quot;Ново име&quot;
+hello.vector
+#        Това е R        Ново име 
+#       &quot;Здравей&quot; &quot;Нова стойност&quot;
+hello.vector[2]
+#        Ново име 
+# &quot;Нова стойност&quot;
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Работа с обекти (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Всеки обект може да има атрибути, които се съхраняват в списък по име</p>
+
+<div style='float:left;width:48%;'>
+  <p>Класовете на обектите са атрибут, както и имената на елементите във вектор и нивата на фактор:</p>
+
+<pre><code class="r">attributes(hello.vector)
+# $names
+# [1] &quot;Това е R&quot; &quot;Ново име&quot;
+attributes(as.factor(hello.vector))
+# $names
+# [1] &quot;Това е R&quot; &quot;Ново име&quot;
+# 
+# $levels
+# [1] &quot;Здравей&quot;       &quot;Нова стойност&quot;
+# 
+# $class
+# [1] &quot;factor&quot;
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Можете да добавяте свои атрибути:</p>
+
+<pre><code class="r">attr(hello.vector, &quot;my.attribute&quot;) &lt;- &quot;А&quot;
+attributes(hello.vector)
+# $names
+# [1] &quot;Това е R&quot; &quot;Ново име&quot;
+# 
+# $my.attribute
+# [1] &quot;А&quot;
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Работа с вектори</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Конструкцията <code>X:Y</code> създава вектор от <code>X</code> до <code>Y</code> (растящ или намаляващ)</li>
+<li><p>Разлики в класовете:</p>
+
+<pre><code class="r">numbers &lt;- c(-1:1, rnorm(n = 3, mean = 3, sd = 10))
+numbers
+# [1] -1.000000  0.000000  1.000000 17.244798 13.357478  0.469073
+class(numbers)
+# [1] &quot;numeric&quot;
+as.integer(numbers)
+# [1] -1  0  1 17 13  0
+as.character(numbers)
+# [1] &quot;-1&quot;                &quot;0&quot;                 &quot;1&quot;                
+# [4] &quot;17.2447978030495&quot;  &quot;13.357477787566&quot;   &quot;0.469072955032535&quot;
+as.logical(numbers)
+# [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Операции с вектори</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Векторните операции винаги се извършват върху всички елементи:</p>
+
+<pre><code class="r">vec &lt;- 1:10
+vec * 2
+#  [1]  2  4  6  8 10 12 14 16 18 20
+vec + 2
+#  [1]  3  4  5  6  7  8  9 10 11 12
+</code></pre></li>
+<li><p>Когато единият вектор е по-къс, той се преизползва от началото:</p>
+
+<pre><code class="r">multiply &lt;- c(2, 3)
+vec * multiply
+#  [1]  2  6  6 12 10 18 14 24 18 30
+##    = 1  2  3  4  5  6...
+##    * 2  3  2  3  2  3...
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Работа с матрици</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Матрицата представлява вектор, с дефиниран брой редове и колони, и може да бъде достъпна като вектор (с <code>[x]</code>). Броят на редовете и колоните се съхранява в атрибута <code>dim</code>.</p>
+
+<div style='float:left;width:48%;'>
+  <p>Създава се и се манипулира по колона, елементи се избират с <code>[колони, редове]</code></p>
+
+<pre><code class="r">mat &lt;- matrix(1:4, nrow = 2); mat
+#      [,1] [,2]
+# [1,]    1    3
+# [2,]    2    4
+mat[2, 1]
+# [1] 2
+mat[2,]
+# [1] 2 4
+mat[, 2]
+# [1] 3 4
+mat[4]
+# [1] 4
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><code>byrow</code> обръща реда на създаване и достъп (по ред, <code>[редове, колони]</code>)</p>
+
+<pre><code class="r">mat &lt;- matrix(1:4, 2, byrow = T); mat
+#      [,1] [,2]
+# [1,]    1    2
+# [2,]    3    4
+mat[2, 1]
+# [1] 3
+mat[2,]
+# [1] 3 4
+mat[, 2]
+# [1] 2 4
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Операции с матрици</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Матричните операции се извършват:</p>
+
+<div style='float:left;width:48%;'>
+  <h3>Нормално (като вектори)</h3>
+
+<pre><code class="r">mat
+#      [,1] [,2]
+# [1,]    1    2
+# [2,]    3    4
+mat * mat
+#      [,1] [,2]
+# [1,]    1    4
+# [2,]    9   16
+mat + 2
+#      [,1] [,2]
+# [1,]    3    4
+# [2,]    5    6
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <h3>Нормално (като вектори)</h3>
+
+<pre><code class="r">mat ^ mat
+#      [,1] [,2]
+# [1,]    1    4
+# [2,]   27  256
+</code></pre>
+
+<h3>Не толкова (като матрици)</h3>
+
+<pre><code class="r">mat %*% mat
+#      [,1] [,2]
+# [1,]    7   10
+# [2,]   15   22
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Списъци</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Списъкът представлява масив от други обекти. С <code>[x]</code> се създава нов списък само с желаните елементи. С <code>[[x]]</code> или <code>$</code> се достига отделен елемент.</p>
+
+<div style='float:left;width:48%;'>
+  <pre><code class="r">my.list &lt;- list(Numbers = 1:5,
+           Names = c(&quot;Иван&quot;, &quot;Петя&quot;),
+           Date = Sys.Date()); my.list
+# $Numbers
+# [1] 1 2 3 4 5
+# 
+# $Names
+# [1] &quot;Иван&quot; &quot;Петя&quot;
+# 
+# $Date
+# [1] &quot;2015-03-11&quot;
+my.list$Date
+# [1] &quot;2015-03-11&quot;
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">my.list[c(2, 3)]
+# $Names
+# [1] &quot;Иван&quot; &quot;Петя&quot;
+# 
+# $Date
+# [1] &quot;2015-03-11&quot;
+my.list[&quot;Names&quot;]
+# $Names
+# [1] &quot;Иван&quot; &quot;Петя&quot;
+my.list[[&quot;Names&quot;]]
+# [1] &quot;Иван&quot; &quot;Петя&quot;
+my.list[[3]]
+# [1] &quot;2015-03-11&quot;
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Таблици</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Таблицата е списък от вектори с еднаква дължина</li>
+<li>Всеки ред може да има име, което е достъпно и може да се променя чрез <code>names()</code></li>
+<li>С <code>[колони]</code> се създава нова таблица с желаните колони. С <code>[ред, колона]</code> се достига една клетка. С <code>[[колона]]</code> или <code>$</code> се достига вектора на колона.</li>
+</ul>
+
+<div style='float:left;width:48%;'>
+  <pre><code class="r">df &lt;- data.frame(Age = c(29, 34),
+      Gender = as.factor(c(&quot;M&quot;, &quot;F&quot;)),
+      row.names = c(&quot;Иван&quot;, &quot;Петя&quot;))
+df
+#      Age Gender
+# Иван  29      M
+# Петя  34      F
+df[2]
+#      Gender
+# Иван      M
+# Петя      F
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">df[[2]]
+# [1] M F
+# Levels: F M
+class(df[[2]])
+# [1] &quot;factor&quot;
+unclass(df[[2]])
+# [1] 2 1
+# attr(,&quot;levels&quot;)
+# [1] &quot;F&quot; &quot;M&quot;
+df[2, 1]
+# [1] 34
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Екосистема</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Графични интерфейси: RStudio, R Commander, Rattle, Deducer, </li>
+<li>Създаване на доклади: RMarkdown, IPython, Knitr, Sweave</li>
+<li>Интерактивни уеб апликации: Shiny, Intuitics</li>
+<li>Скалируемост: H20 (система базирана на Hadoop), rmr2 (Hadoop MapReduce)</li>
+<li>Интерпретатори:
+
+<ul>
+<li>Комерсиални: Revolution Analytics, Tibco TERR, HP Distributed R, Teradata Aster R, Oracle R Enterprise</li>
+<li>С отворен код: Pretty Quick R, Renjin, Riposte, CXXR, FastR</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Екосистема (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Пакети за паралелизация: multicore, snowfall/snow, Rmpi/pdbMPI</li>
+<li>Графични пакети: ggplot2, ggvis, googleVis, rCharts, lattice</li>
+<li>Работа с данни:
+
+<ul>
+<li>Свързване: RCurl, ROracle, RMySQL, RODBC, RPostgreSQL, RMongo, RSQLite, rhdfs, rhbase</li>
+<li>Транформация: dplyr/plyr, reshape2, sqldf</li>
+<li>Големи данни: ff, database, bigmemory, bigalgebra и приятели</li>
+</ul></li>
+<li>Продуктизиране: OpenCPU, rApache, rServe</li>
+<li>Други: slidify (тази презентация), animation, audio, rgl (3D графики), httpuv (HTTP сървър)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Ще анализираме червени и бели вина!</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Данни от <a href="https://archive.ics.uci.edu/ml/datasets/Wine+Quality">https://archive.ics.uci.edu/ml/datasets/Wine+Quality</a></li>
+<li>Получаваме два файла - един с бели и един с червени вина</li>
+<li>Целта е да установим как химичните съставки определят качеството на виното</li>
+</ul>
+
+<div style='float:left;width:48%;'>
+  <ul>
+<li>Колони (12):
+
+<ul>
+<li>fixed acidity </li>
+<li>volatile acidity </li>
+<li>citric acid </li>
+<li>residual sugar </li>
+<li>chlorides </li>
+<li>free sulfur dioxide </li>
+<li>total sulfur dioxide </li>
+</ul></li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li><p>Колони (продължение):</p>
+
+<ul>
+<li>density </li>
+<li>pH </li>
+<li>sulphates </li>
+<li>alcohol </li>
+</ul></li>
+<li><p>Изходна стойност</p>
+
+<ul>
+<li>quality (от 0 до 10)</li>
+</ul></li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Зареждане на данните</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data.red &lt;- read.csv(&quot;winequality-red.csv&quot;, header = T, sep =&quot;;&quot;)
+head(data.red, 1)
+#   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+# 1           7.4              0.7           0            1.9     0.076
+#   free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol
+# 1                  11                   34  0.9978 3.51      0.56     9.4
+#   quality
+# 1       5
+data.white &lt;- read.csv(&quot;winequality-white.csv&quot;, header = T, sep =&quot;;&quot;)
+head(data.white, 1)
+#   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+# 1             7             0.27        0.36           20.7     0.045
+#   free.sulfur.dioxide total.sulfur.dioxide density pH sulphates alcohol
+# 1                  45                  170   1.001  3      0.45     8.8
+#   quality
+# 1       6
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Добавяне на типа вино в таблицата</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data.red &lt;- transform(data.red, type = &quot;red&quot;)
+head(data.red, 1)
+#   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+# 1           7.4              0.7           0            1.9     0.076
+#   free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates alcohol
+# 1                  11                   34  0.9978 3.51      0.56     9.4
+#   quality type
+# 1       5  red
+data.white &lt;- transform(data.white, type = &quot;white&quot;)
+head(data.white, 1)
+#   fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+# 1             7             0.27        0.36           20.7     0.045
+#   free.sulfur.dioxide total.sulfur.dioxide density pH sulphates alcohol
+# 1                  45                  170   1.001  3      0.45     8.8
+#   quality  type
+# 1       6 white
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Обединяване на данните</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data &lt;- rbind(data.red, data.white)
+data[c(1, 2000), ]
+#      fixed.acidity volatile.acidity citric.acid residual.sugar chlorides
+# 1              7.4              0.7         0.0            1.9     0.076
+# 2000           6.3              0.2         0.4            1.5     0.037
+#      free.sulfur.dioxide total.sulfur.dioxide density   pH sulphates
+# 1                     11                   34  0.9978 3.51      0.56
+# 2000                  35                  107  0.9917 3.46      0.50
+#      alcohol quality  type
+# 1        9.4       5   red
+# 2000    11.4       6 white
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Как се филтрират редове и колони</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(dplyr)
+nrow(data)
+# [1] 6497
+data.red &lt;- filter(data, type == &quot;red&quot;)
+ncol(data.red)
+# [1] 13
+names(data.red)[13]
+# [1] &quot;type&quot;
+data.red &lt;- select(data.red, -type)
+ncol(data.red)
+# [1] 12
+</code></pre>
+
+<p>За сравнение, филтрирането и махането на колона без dplyr:</p>
+
+<pre><code>data.red &lt;- data[data$type == &quot;red&quot;, ]
+data.red &lt;- data.red[, -which(names(data.red) == &quot;type&quot;)]
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Подготвяне на данни за плотове</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(reshape2)
+data.red &lt;- select(filter(data, type == &quot;red&quot;), -type)
+data.white &lt;- select(filter(data, type == &quot;white&quot;), -type)
+data.red.for.plot &lt;- melt(data.red, id.vars = NULL)
+data.white.for.plot &lt;- melt(data.red, id.vars = NULL)
+data.red.for.plot[1:7, ]
+#        variable value
+# 1 fixed.acidity   7.4
+# 2 fixed.acidity   7.8
+# 3 fixed.acidity   7.8
+# 4 fixed.acidity  11.2
+# 5 fixed.acidity   7.4
+# 6 fixed.acidity   7.4
+# 7 fixed.acidity   7.9
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Плотове на червени вина</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:38%;'>
+  <pre><code class="r">library(ggplot2)
+ggplot(data.red.for.plot,
+    aes(x = value)) + 
+    facet_wrap(~variable,
+       scales = &quot;free_x&quot;) + 
+    geom_histogram()
+</code></pre>
+
+</div>
+<div style='float:right;width:58%;'>
+  <p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Обобщаващи данни</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(psych);
+describe(data.red)
+</code></pre>
+
+<pre><code>#                      vars    n  mean    sd median trimmed   mad  min
+# fixed.acidity           1 1599  8.32  1.74   7.90    8.15  1.48 4.60
+# volatile.acidity        2 1599  0.53  0.18   0.52    0.52  0.18 0.12
+# citric.acid             3 1599  0.27  0.19   0.26    0.26  0.25 0.00
+# residual.sugar          4 1599  2.54  1.41   2.20    2.26  0.44 0.90
+# chlorides               5 1599  0.09  0.05   0.08    0.08  0.01 0.01
+# free.sulfur.dioxide     6 1599 15.87 10.46  14.00   14.58 10.38 1.00
+# total.sulfur.dioxide    7 1599 46.47 32.90  38.00   41.84 26.69 6.00
+# density                 8 1599  1.00  0.00   1.00    1.00  0.00 0.99
+# pH                      9 1599  3.31  0.15   3.31    3.31  0.15 2.74
+# sulphates              10 1599  0.66  0.17   0.62    0.64  0.12 0.33
+# alcohol                11 1599 10.42  1.07  10.20   10.31  1.04 8.40
+# quality                12 1599  5.64  0.81   6.00    5.59  1.48 3.00
+#                         max  range skew kurtosis   se
+# fixed.acidity         15.90  11.30 0.98     1.12 0.04
+# volatile.acidity       1.58   1.46 0.67     1.21 0.00
+# citric.acid            1.00   1.00 0.32    -0.79 0.00
+# residual.sugar        15.50  14.60 4.53    28.49 0.04
+# chlorides              0.61   0.60 5.67    41.53 0.00
+# free.sulfur.dioxide   72.00  71.00 1.25     2.01 0.26
+# total.sulfur.dioxide 289.00 283.00 1.51     3.79 0.82
+# density                1.00   0.01 0.07     0.92 0.00
+# pH                     4.01   1.27 0.19     0.80 0.00
+# sulphates              2.00   1.67 2.42    11.66 0.00
+# alcohol               14.90   6.50 0.86     0.19 0.03
+# quality                8.00   5.00 0.22     0.29 0.02
+</code></pre>
+
+<!-- pander(, style = 'rmarkdown', split.cells = Inf) -->
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Плот на sulphates на червени вина</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:38%;'>
+  <pre><code class="r">data.red.sulphates = filter(
+  data.red.for.plot, 
+  variable == &quot;sulphates&quot;)
+ggplot(data.red.for.plot,
+  aes(x = value))
+  + geom_histogram()
+</code></pre>
+
+</div>
+<div style='float:right;width:58%;'>
+  <p><img src="assets/fig/unnamed-chunk-31-1.png" alt="plot of chunk unnamed-chunk-31"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Филтриране на силно отличаващи се стойности (outliers)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">nrow(data.red)
+# [1] 1599
+data.red = filter(data.red, sulphates &lt; 1.5)
+nrow(data.red)
+# [1] 1591
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Проверка за колинеарност</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:38%;'>
+  <pre><code class="r">library(corrplot)
+corrs &lt;- cor(data.red,
+    use=&quot;complete.obs&quot;)
+corrplot(corrs,
+    method= &quot;circle&quot;)
+</code></pre>
+
+</div>
+<div style='float:right;width:58%;'>
+  <p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Кoмбинираме стойности</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data.red &lt;- mutate(data.red,
+                   acidity.density = (fixed.acidity + citric.acid + density - pH) / 3,
+                   sulfur.dioxide = (free.sulfur.dioxide + total.sulfur.dioxide) / 2)
+data.red &lt;- select(data.red, -c(fixed.acidity, citric.acid, density, 
+                   free.sulfur.dioxide, total.sulfur.dioxide, pH))
+head(data.red, 3)
+#   volatile.acidity residual.sugar chlorides sulphates alcohol quality
+# 1             0.70            1.9     0.076      0.56     9.4       5
+# 2             0.88            2.6     0.098      0.68     9.8       5
+# 3             0.76            2.3     0.092      0.65     9.8       5
+#   acidity.density sulfur.dioxide
+# 1        1.629267           22.5
+# 2        1.865600           46.0
+# 3        1.859000           34.5
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Проверка за колинеарност (отново)</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:38%;'>
+  <pre><code class="r">library(corrplot)
+corrs &lt;- cor(data.red,
+    use=&quot;complete.obs&quot;)
+corrplot(corrs,
+    method= &quot;circle&quot;)
+</code></pre>
+
+</div>
+<div style='float:right;width:58%;'>
+  <p><img src="assets/fig/unnamed-chunk-37-1.png" alt="plot of chunk unnamed-chunk-37"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Линеен регресионен модел</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">model &lt;- lm(quality ~ volatile.acidity + residual.sugar + chlorides + sulphates +
+          alcohol + acidity.density + sulfur.dioxide, data = data.red)
+summary(model)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-39" style="background:;">
+  <hgroup>
+    <h2>Линеен регресионен модел (резултат)</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
+
+<!-- Wed Mar 11 18:20:25 2015 -->
+
+<table border=1>
+<tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
+  <tr> <td align="right"> (Intercept) </td> <td align="right"> 2.6775 </td> <td align="right"> 0.2224 </td> <td align="right"> 12.04 </td> <td align="right"> 0.0000 </td> </tr>
+  <tr> <td align="right"> volatile.acidity </td> <td align="right"> -1.0458 </td> <td align="right"> 0.1011 </td> <td align="right"> -10.34 </td> <td align="right"> 0.0000 </td> </tr>
+  <tr> <td align="right"> residual.sugar </td> <td align="right"> 0.0074 </td> <td align="right"> 0.0120 </td> <td align="right"> 0.61 </td> <td align="right"> 0.5406 </td> </tr>
+  <tr> <td align="right"> chlorides </td> <td align="right"> -1.7903 </td> <td align="right"> 0.4101 </td> <td align="right"> -4.37 </td> <td align="right"> 0.0000 </td> </tr>
+  <tr> <td align="right"> sulphates </td> <td align="right"> 1.1291 </td> <td align="right"> 0.1254 </td> <td align="right"> 9.00 </td> <td align="right"> 0.0000 </td> </tr>
+  <tr> <td align="right"> alcohol </td> <td align="right"> 0.2777 </td> <td align="right"> 0.0167 </td> <td align="right"> 16.60 </td> <td align="right"> 0.0000 </td> </tr>
+  <tr> <td align="right"> acidity.density </td> <td align="right"> 0.0533 </td> <td align="right"> 0.0268 </td> <td align="right"> 1.98 </td> <td align="right"> 0.0473 </td> </tr>
+  <tr> <td align="right"> sulfur.dioxide </td> <td align="right"> -0.0030 </td> <td align="right"> 0.0009 </td> <td align="right"> -3.57 </td> <td align="right"> 0.0004 </td> </tr>
+   </table>
+
+<p>Имаме няколко променливи с добри показатели:</p>
+
+<div style='float:left;width:48%;'>
+  <ul>
+<li>volatile.acidity</li>
+<li>chlorides</li>
+<li>sulphates</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>alcohol</li>
+<li>acidity.density</li>
+<li>sulfur.dioxide</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>Класификационен модел</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Трябва да групираме качеството на вината:</p>
+
+<pre><code class="r">data.red &lt;- mutate(data.red, quality.group = cut(quality, c(1, 4, 6, 10)))
+head(data.red, 3)
+#   volatile.acidity residual.sugar chlorides sulphates alcohol quality
+# 1             0.70            1.9     0.076      0.56     9.4       5
+# 2             0.88            2.6     0.098      0.68     9.8       5
+# 3             0.76            2.3     0.092      0.65     9.8       5
+#   acidity.density sulfur.dioxide quality.group
+# 1        1.629267           22.5         (4,6]
+# 2        1.865600           46.0         (4,6]
+# 3        1.859000           34.5         (4,6]
+table(data.red$quality.group)
+# 
+#  (1,4]  (4,6] (6,10] 
+#     62   1312    217
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>Класификационен модел (2)</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:42%;'>
+  <pre><code class="r">library(rpart)
+library(rpart.plot)
+model &lt;- rpart(quality.group ~
+  volatile.acidity +
+  residual.sugar +
+  chlorides + sulphates +
+  alcohol + acidity.density +
+  sulfur.dioxide,
+  data = data.red)
+prp(model)
+</code></pre>
+
+</div>
+<div style='float:right;width:54%;'>
+  <p><img src="assets/fig/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>Благодаря!</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style="height: 400px">&#160;</div>
+
+<p>Кристиан Младенов</p>
+
+<p><a href="mailto:christian@intuitics.com">christian@intuitics.com</a></p>
+
+<p>Презентация с код + данни: <a href="http://www.github.com/zhvihti">www.github.com/zhvihti</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='За мен'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Какво е R'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Предимства'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Популярност'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Растеж на броя на R пакетите'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Недостатъци'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Сравнение с конкуренцията'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Развитие'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Въведение в езика'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Видове обекти'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Задаване на стойност на променливи'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Помощ за функция'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Търсене в документацията'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Задаване на стойност на функции'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Работа с обекти'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Работа с обекти (2)'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Работа с вектори'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Операции с вектори'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Работа с матрици'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Операции с матрици'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Списъци'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Таблици'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Екосистема'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Екосистема (2)'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Ще анализираме червени и бели вина!'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Зареждане на данните'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Добавяне на типа вино в таблицата'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Обединяване на данните'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Как се филтрират редове и колони'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Подготвяне на данни за плотове'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Плотове на червени вина'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Обобщаващи данни'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Плот на sulphates на червени вина'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Филтриране на силно отличаващи се стойности (outliers)'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Проверка за колинеарност'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Кoмбинираме стойности'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Проверка за колинеарност (отново)'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Линеен регресионен модел'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Линеен регресионен модел (резултат)'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Класификационен модел'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Класификационен модел (2)'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Благодаря!'>
+         42
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
