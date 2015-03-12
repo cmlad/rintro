@@ -46,6 +46,8 @@ knit        : slidify::knit2slides
 
 <img src="popularity.png" style="width: 100%" />
 
+Rexer Analytics Data Miner Survey, 2013
+
 ---
 
 ## Растеж на броя на R пакетите
@@ -67,6 +69,8 @@ knit        : slidify::knit2slides
 ---
 
 ## Сравнение с конкуренцията
+
+(според мен)
 
 |                      | R           | SAS         | SPSS           | Matlab               | Python      |
 |----------------------|-------------|-------------|----------------|----------------------|-------------|
@@ -141,7 +145,7 @@ knit        : slidify::knit2slides
 
 ## Помощ за функция
 
-`? ф` и `help(ф)` показват документацията на функция, `example(ф)` показва примери:
+`? функция` и `help()` показват документацията на функция, `example()` показва примери:
 
 ```
 ? rnorm или help(rnorm)
@@ -264,7 +268,7 @@ attributes(hello.vector)
 
 *** =left
 
-Създава се и се манипулира по колона, елементи се избират с `[колони, редове]`
+Създава се и се манипулира по колона, елементи се избират с `[редове, колони]`
 
 ```{r, collapse = T, comment = "#"}
 mat <- matrix(1:4, nrow = 2); mat
@@ -276,13 +280,11 @@ mat[4]
 
 *** =right
 
-`byrow` обръща реда на създаване и достъп (по ред, `[редове, колони]`)
+С `byrow` създаването става по ред
 
 ```{r, collapse = T, comment = "#"}
-mat <- matrix(1:4, 2, byrow = T); mat
-mat[2, 1]
-mat[2,]
-mat[, 2]
+mat <- matrix(1:4, 2, byrow = T)
+mat
 ```
 
 --- &twocol_left
@@ -387,7 +389,7 @@ df[2, 1]
 - Работа с данни:
   - Свързване: RCurl, ROracle, RMySQL, RODBC, RPostgreSQL, RMongo, RSQLite, rhdfs, rhbase
   - Транформация: dplyr/plyr, reshape2, sqldf
-  - Големи данни: ff, database, bigmemory, bigalgebra и приятели
+  - Големи данни: ff, datatable, bigmemory, bigalgebra и приятели
 - Продуктизиране: OpenCPU, rApache, rServe
 - Други: slidify (тази презентация), animation, audio, rgl (3D графики), httpuv (HTTP сървър)
 
@@ -515,14 +517,14 @@ suppressMessages(print(p))
 ## Обобщаващи данни
 
 ```{r, collapse = T, comment = "#", eval = F}
-library(psych);
-describe(data.red)
+library(psych); describe(data.red)
 ```
 
-```{r, collapse = T, comment = "#", echo = F, warning = F}
+```{r, collapse = T, comment = "#", echo = F, warning = F, results = "asis"}
 suppressMessages(library(psych))
 suppressMessages(library(pander))
-describe(data.red)
+library(xtable)
+print(xtable(describe(data.red)), type = "html")
 ```
 
 <!-- pander(, style = 'rmarkdown', split.cells = Inf) -->
@@ -570,17 +572,17 @@ nrow(data.red)
 ```{r, collapse = T, comment = "#", eval = F}
 library(corrplot)
 corrs <- cor(data.red,
-    use="complete.obs")
+    use = "complete.obs")
 corrplot(corrs,
-    method= "circle")
+    method = "number")
 ```
 
 *** =right width:58%
 
 ```{r, collapse = T, comment = "#", echo = F, warning = F}
 library(corrplot)
-corrs <- cor(data.red, use="complete.obs")
-corrplot(corrs, method= "number")
+corrs <- cor(data.red, use = "complete.obs")
+corrplot(corrs, method = "number")
 ```
 
 ---
@@ -603,19 +605,17 @@ head(data.red, 3)
 *** =left width:38%
 
 ```{r, collapse = T, comment = "#", eval = F}
-library(corrplot)
 corrs <- cor(data.red,
-    use="complete.obs")
+    use = "complete.obs")
 corrplot(corrs,
-    method= "circle")
+    method = "number")
 ```
 
 *** =right width:58%
 
 ```{r, collapse = T, comment = "#", echo = F, warning = F}
-library(corrplot)
-corrs <- cor(data.red, use="complete.obs")
-corrplot(corrs, method= "number")
+corrs <- cor(data.red, use = "complete.obs")
+corrplot(corrs, method = "number")
 ```
 
 ---
@@ -635,7 +635,6 @@ summary(model)
 ```{r, collapse = T, comment = "#", echo = F, results='asis'}
 model <- lm(quality ~ volatile.acidity + residual.sugar + chlorides + sulphates +
           alcohol + acidity.density + sulfur.dioxide, data = data.red)
-library(xtable)
 print(xtable(summary(model)), type = "html")
 ```
 
@@ -660,7 +659,7 @@ print(xtable(summary(model)), type = "html")
 Трябва да групираме качеството на вината:
 
 ```{r, collapse = T, comment = "#"}
-data.red <- mutate(data.red, quality.group = cut(quality, c(1, 4, 6, 10)))
+data.red <- mutate(data.red, quality.group = cut(quality, c(1, 5, 6, 10)))
 head(data.red, 3)
 table(data.red$quality.group)
 ```
@@ -684,12 +683,14 @@ model <- rpart(quality.group ~
 prp(model)
 ```
 
+Извод: на-добрите вина са с между 11 и 12% алкохол и сулфати под 0.64
+
 *** =right width:54%
 
 ```{r, collapse = T, comment = "#", echo = F, warning = F}
 library(rpart)
 library(rpart.plot)
-data.red <- mutate(data.red, quality.group = cut(quality, c(0, 5, 6, 11)))
+data.red <- mutate(data.red, quality.group = cut(quality, c(1, 5, 6, 10)))
 model <- rpart(quality.group ~ volatile.acidity + residual.sugar + chlorides + sulphates + alcohol + acidity.density + sulfur.dioxide, data = data.red)
 prp(model)
 ```
@@ -704,5 +705,5 @@ prp(model)
 
 christian@intuitics.com
 
-Презентация с код + данни: www.github.com/zhvihti
+Презентация с код + данни: https://github.com/zhvihti/rintro
 

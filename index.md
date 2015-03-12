@@ -46,6 +46,8 @@ knit        : slidify::knit2slides
 
 <img src="popularity.png" style="width: 100%" />
 
+Rexer Analytics Data Miner Survey, 2013
+
 ---
 
 ## Растеж на броя на R пакетите
@@ -67,6 +69,8 @@ knit        : slidify::knit2slides
 ---
 
 ## Сравнение с конкуренцията
+
+(според мен)
 
 |                      | R           | SAS         | SPSS           | Matlab               | Python      |
 |----------------------|-------------|-------------|----------------|----------------------|-------------|
@@ -150,7 +154,7 @@ knit        : slidify::knit2slides
 
 ## Помощ за функция
 
-`? ф` и `help(ф)` показват документацията на функция, `example(ф)` показва примери:
+`? функция` и `help()` показват документацията на функция, `example()` показва примери:
 
 ```
 ? rnorm или help(rnorm)
@@ -270,14 +274,14 @@ attributes(hello.vector)
   ```r
   numbers <- c(-1:1, rnorm(n = 3, mean = 3, sd = 10))
   numbers
-  # [1] -1.000000  0.000000  1.000000 17.244798 13.357478  0.469073
+  # [1] -1.000000  0.000000  1.000000  8.537395 23.620351 -1.134102
   class(numbers)
   # [1] "numeric"
   as.integer(numbers)
-  # [1] -1  0  1 17 13  0
+  # [1] -1  0  1  8 23 -1
   as.character(numbers)
   # [1] "-1"                "0"                 "1"                
-  # [4] "17.2447978030495"  "13.357477787566"   "0.469072955032535"
+  # [4] "8.53739460857242"  "23.6203505846688"  "-1.13410240695837"
   as.logical(numbers)
   # [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
   ```
@@ -315,7 +319,7 @@ attributes(hello.vector)
 
 *** =left
 
-Създава се и се манипулира по колона, елементи се избират с `[колони, редове]`
+Създава се и се манипулира по колона, елементи се избират с `[редове, колони]`
 
 
 ```r
@@ -335,20 +339,15 @@ mat[4]
 
 *** =right
 
-`byrow` обръща реда на създаване и достъп (по ред, `[редове, колони]`)
+С `byrow` създаването става по ред
 
 
 ```r
-mat <- matrix(1:4, 2, byrow = T); mat
+mat <- matrix(1:4, 2, byrow = T)
+mat
 #      [,1] [,2]
 # [1,]    1    2
 # [2,]    3    4
-mat[2, 1]
-# [1] 3
-mat[2,]
-# [1] 3 4
-mat[, 2]
-# [1] 2 4
 ```
 
 --- &twocol_left
@@ -419,9 +418,9 @@ my.list <- list(Numbers = 1:5,
 # [1] "Иван" "Петя"
 # 
 # $Date
-# [1] "2015-03-11"
+# [1] "2015-03-12"
 my.list$Date
-# [1] "2015-03-11"
+# [1] "2015-03-12"
 ```
 
 *** =right width:48%
@@ -433,14 +432,14 @@ my.list[c(2, 3)]
 # [1] "Иван" "Петя"
 # 
 # $Date
-# [1] "2015-03-11"
+# [1] "2015-03-12"
 my.list["Names"]
 # $Names
 # [1] "Иван" "Петя"
 my.list[["Names"]]
 # [1] "Иван" "Петя"
 my.list[[3]]
-# [1] "2015-03-11"
+# [1] "2015-03-12"
 ```
 
 --- &twocol_left_width
@@ -506,7 +505,7 @@ df[2, 1]
 - Работа с данни:
   - Свързване: RCurl, ROracle, RMySQL, RODBC, RPostgreSQL, RMongo, RSQLite, rhdfs, rhbase
   - Транформация: dplyr/plyr, reshape2, sqldf
-  - Големи данни: ff, database, bigmemory, bigalgebra и приятели
+  - Големи данни: ff, datatable, bigmemory, bigalgebra и приятели
 - Продуктизиране: OpenCPU, rApache, rServe
 - Други: slidify (тази презентация), animation, audio, rgl (3D графики), httpuv (HTTP сървър)
 
@@ -613,6 +612,16 @@ data[c(1, 2000), ]
 
 ```r
 library(dplyr)
+# 
+# Attaching package: 'dplyr'
+# 
+# The following object is masked from 'package:stats':
+# 
+#     filter
+# 
+# The following objects are masked from 'package:base':
+# 
+#     intersect, setdiff, setequal, union
 nrow(data)
 # [1] 6497
 data.red <- filter(data, type == "red")
@@ -680,39 +689,26 @@ ggplot(data.red.for.plot,
 
 
 ```r
-library(psych);
-describe(data.red)
+library(psych); describe(data.red)
 ```
 
-
-```
-#                      vars    n  mean    sd median trimmed   mad  min
-# fixed.acidity           1 1599  8.32  1.74   7.90    8.15  1.48 4.60
-# volatile.acidity        2 1599  0.53  0.18   0.52    0.52  0.18 0.12
-# citric.acid             3 1599  0.27  0.19   0.26    0.26  0.25 0.00
-# residual.sugar          4 1599  2.54  1.41   2.20    2.26  0.44 0.90
-# chlorides               5 1599  0.09  0.05   0.08    0.08  0.01 0.01
-# free.sulfur.dioxide     6 1599 15.87 10.46  14.00   14.58 10.38 1.00
-# total.sulfur.dioxide    7 1599 46.47 32.90  38.00   41.84 26.69 6.00
-# density                 8 1599  1.00  0.00   1.00    1.00  0.00 0.99
-# pH                      9 1599  3.31  0.15   3.31    3.31  0.15 2.74
-# sulphates              10 1599  0.66  0.17   0.62    0.64  0.12 0.33
-# alcohol                11 1599 10.42  1.07  10.20   10.31  1.04 8.40
-# quality                12 1599  5.64  0.81   6.00    5.59  1.48 3.00
-#                         max  range skew kurtosis   se
-# fixed.acidity         15.90  11.30 0.98     1.12 0.04
-# volatile.acidity       1.58   1.46 0.67     1.21 0.00
-# citric.acid            1.00   1.00 0.32    -0.79 0.00
-# residual.sugar        15.50  14.60 4.53    28.49 0.04
-# chlorides              0.61   0.60 5.67    41.53 0.00
-# free.sulfur.dioxide   72.00  71.00 1.25     2.01 0.26
-# total.sulfur.dioxide 289.00 283.00 1.51     3.79 0.82
-# density                1.00   0.01 0.07     0.92 0.00
-# pH                     4.01   1.27 0.19     0.80 0.00
-# sulphates              2.00   1.67 2.42    11.66 0.00
-# alcohol               14.90   6.50 0.86     0.19 0.03
-# quality                8.00   5.00 0.22     0.29 0.02
-```
+<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
+<!-- Thu Mar 12 11:16:52 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> vars </th> <th> n </th> <th> mean </th> <th> sd </th> <th> median </th> <th> trimmed </th> <th> mad </th> <th> min </th> <th> max </th> <th> range </th> <th> skew </th> <th> kurtosis </th> <th> se </th>  </tr>
+  <tr> <td align="right"> fixed.acidity </td> <td align="right">   1 </td> <td align="right"> 1599.00 </td> <td align="right"> 8.32 </td> <td align="right"> 1.74 </td> <td align="right"> 7.90 </td> <td align="right"> 8.15 </td> <td align="right"> 1.48 </td> <td align="right"> 4.60 </td> <td align="right"> 15.90 </td> <td align="right"> 11.30 </td> <td align="right"> 0.98 </td> <td align="right"> 1.12 </td> <td align="right"> 0.04 </td> </tr>
+  <tr> <td align="right"> volatile.acidity </td> <td align="right">   2 </td> <td align="right"> 1599.00 </td> <td align="right"> 0.53 </td> <td align="right"> 0.18 </td> <td align="right"> 0.52 </td> <td align="right"> 0.52 </td> <td align="right"> 0.18 </td> <td align="right"> 0.12 </td> <td align="right"> 1.58 </td> <td align="right"> 1.46 </td> <td align="right"> 0.67 </td> <td align="right"> 1.21 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> citric.acid </td> <td align="right">   3 </td> <td align="right"> 1599.00 </td> <td align="right"> 0.27 </td> <td align="right"> 0.19 </td> <td align="right"> 0.26 </td> <td align="right"> 0.26 </td> <td align="right"> 0.25 </td> <td align="right"> 0.00 </td> <td align="right"> 1.00 </td> <td align="right"> 1.00 </td> <td align="right"> 0.32 </td> <td align="right"> -0.79 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> residual.sugar </td> <td align="right">   4 </td> <td align="right"> 1599.00 </td> <td align="right"> 2.54 </td> <td align="right"> 1.41 </td> <td align="right"> 2.20 </td> <td align="right"> 2.26 </td> <td align="right"> 0.44 </td> <td align="right"> 0.90 </td> <td align="right"> 15.50 </td> <td align="right"> 14.60 </td> <td align="right"> 4.53 </td> <td align="right"> 28.49 </td> <td align="right"> 0.04 </td> </tr>
+  <tr> <td align="right"> chlorides </td> <td align="right">   5 </td> <td align="right"> 1599.00 </td> <td align="right"> 0.09 </td> <td align="right"> 0.05 </td> <td align="right"> 0.08 </td> <td align="right"> 0.08 </td> <td align="right"> 0.01 </td> <td align="right"> 0.01 </td> <td align="right"> 0.61 </td> <td align="right"> 0.60 </td> <td align="right"> 5.67 </td> <td align="right"> 41.53 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> free.sulfur.dioxide </td> <td align="right">   6 </td> <td align="right"> 1599.00 </td> <td align="right"> 15.87 </td> <td align="right"> 10.46 </td> <td align="right"> 14.00 </td> <td align="right"> 14.58 </td> <td align="right"> 10.38 </td> <td align="right"> 1.00 </td> <td align="right"> 72.00 </td> <td align="right"> 71.00 </td> <td align="right"> 1.25 </td> <td align="right"> 2.01 </td> <td align="right"> 0.26 </td> </tr>
+  <tr> <td align="right"> total.sulfur.dioxide </td> <td align="right">   7 </td> <td align="right"> 1599.00 </td> <td align="right"> 46.47 </td> <td align="right"> 32.90 </td> <td align="right"> 38.00 </td> <td align="right"> 41.84 </td> <td align="right"> 26.69 </td> <td align="right"> 6.00 </td> <td align="right"> 289.00 </td> <td align="right"> 283.00 </td> <td align="right"> 1.51 </td> <td align="right"> 3.79 </td> <td align="right"> 0.82 </td> </tr>
+  <tr> <td align="right"> density </td> <td align="right">   8 </td> <td align="right"> 1599.00 </td> <td align="right"> 1.00 </td> <td align="right"> 0.00 </td> <td align="right"> 1.00 </td> <td align="right"> 1.00 </td> <td align="right"> 0.00 </td> <td align="right"> 0.99 </td> <td align="right"> 1.00 </td> <td align="right"> 0.01 </td> <td align="right"> 0.07 </td> <td align="right"> 0.92 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> pH </td> <td align="right">   9 </td> <td align="right"> 1599.00 </td> <td align="right"> 3.31 </td> <td align="right"> 0.15 </td> <td align="right"> 3.31 </td> <td align="right"> 3.31 </td> <td align="right"> 0.15 </td> <td align="right"> 2.74 </td> <td align="right"> 4.01 </td> <td align="right"> 1.27 </td> <td align="right"> 0.19 </td> <td align="right"> 0.80 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> sulphates </td> <td align="right">  10 </td> <td align="right"> 1599.00 </td> <td align="right"> 0.66 </td> <td align="right"> 0.17 </td> <td align="right"> 0.62 </td> <td align="right"> 0.64 </td> <td align="right"> 0.12 </td> <td align="right"> 0.33 </td> <td align="right"> 2.00 </td> <td align="right"> 1.67 </td> <td align="right"> 2.42 </td> <td align="right"> 11.66 </td> <td align="right"> 0.00 </td> </tr>
+  <tr> <td align="right"> alcohol </td> <td align="right">  11 </td> <td align="right"> 1599.00 </td> <td align="right"> 10.42 </td> <td align="right"> 1.07 </td> <td align="right"> 10.20 </td> <td align="right"> 10.31 </td> <td align="right"> 1.04 </td> <td align="right"> 8.40 </td> <td align="right"> 14.90 </td> <td align="right"> 6.50 </td> <td align="right"> 0.86 </td> <td align="right"> 0.19 </td> <td align="right"> 0.03 </td> </tr>
+  <tr> <td align="right"> quality </td> <td align="right">  12 </td> <td align="right"> 1599.00 </td> <td align="right"> 5.64 </td> <td align="right"> 0.81 </td> <td align="right"> 6.00 </td> <td align="right"> 5.59 </td> <td align="right"> 1.48 </td> <td align="right"> 3.00 </td> <td align="right"> 8.00 </td> <td align="right"> 5.00 </td> <td align="right"> 0.22 </td> <td align="right"> 0.29 </td> <td align="right"> 0.02 </td> </tr>
+   </table>
 
 <!-- pander(, style = 'rmarkdown', split.cells = Inf) -->
 
@@ -760,9 +756,9 @@ nrow(data.red)
 ```r
 library(corrplot)
 corrs <- cor(data.red,
-    use="complete.obs")
+    use = "complete.obs")
 corrplot(corrs,
-    method= "circle")
+    method = "number")
 ```
 
 *** =right width:58%
@@ -799,11 +795,10 @@ head(data.red, 3)
 
 
 ```r
-library(corrplot)
 corrs <- cor(data.red,
-    use="complete.obs")
+    use = "complete.obs")
 corrplot(corrs,
-    method= "circle")
+    method = "number")
 ```
 
 *** =right width:58%
@@ -826,7 +821,7 @@ summary(model)
 ## Линеен регресионен модел (резултат)
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Mar 11 18:20:25 2015 -->
+<!-- Thu Mar 12 11:16:52 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Estimate </th> <th> Std. Error </th> <th> t value </th> <th> Pr(&gt;|t|) </th>  </tr>
   <tr> <td align="right"> (Intercept) </td> <td align="right"> 2.6775 </td> <td align="right"> 0.2224 </td> <td align="right"> 12.04 </td> <td align="right"> 0.0000 </td> </tr>
@@ -861,20 +856,20 @@ summary(model)
 
 
 ```r
-data.red <- mutate(data.red, quality.group = cut(quality, c(1, 4, 6, 10)))
+data.red <- mutate(data.red, quality.group = cut(quality, c(1, 5, 6, 10)))
 head(data.red, 3)
 #   volatile.acidity residual.sugar chlorides sulphates alcohol quality
 # 1             0.70            1.9     0.076      0.56     9.4       5
 # 2             0.88            2.6     0.098      0.68     9.8       5
 # 3             0.76            2.3     0.092      0.65     9.8       5
 #   acidity.density sulfur.dioxide quality.group
-# 1        1.629267           22.5         (4,6]
-# 2        1.865600           46.0         (4,6]
-# 3        1.859000           34.5         (4,6]
+# 1        1.629267           22.5         (1,5]
+# 2        1.865600           46.0         (1,5]
+# 3        1.859000           34.5         (1,5]
 table(data.red$quality.group)
 # 
-#  (1,4]  (4,6] (6,10] 
-#     62   1312    217
+#  (1,5]  (5,6] (6,10] 
+#    739    635    217
 ```
 
 --- &twocol_left_width
@@ -897,6 +892,8 @@ model <- rpart(quality.group ~
 prp(model)
 ```
 
+Извод: на-добрите вина са с между 11 и 12% алкохол и сулфати под 0.64
+
 *** =right width:54%
 
 ![plot of chunk unnamed-chunk-42](assets/fig/unnamed-chunk-42-1.png) 
@@ -911,5 +908,5 @@ prp(model)
 
 christian@intuitics.com
 
-Презентация с код + данни: www.github.com/zhvihti
+Презентация с код + данни: https://github.com/zhvihti/rintro
 
